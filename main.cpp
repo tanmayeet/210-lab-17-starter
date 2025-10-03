@@ -18,6 +18,7 @@ struct Node {
 Node* addToFront(Node* head, float value);
 Node* deleteNode(Node* head, int position);
 Node* insertAfter(Node* head, int position, float value);
+Node* addToTail(Node* head, float value);
 void deleteList(Node*& head);
 void output(Node*);
 void insertNodePrompt(Node*& head);
@@ -160,4 +161,19 @@ void output(Node* hd) {
     current = current->next;
   }
   cout << endl;
+}
+
+Node* addToTail(Node* head, float value) {
+  Node* newNode = new Node;
+  newNode->value = value;
+  newNode->next = nullptr;
+
+  if (!head) return newNode;
+
+  Node* current = head;
+  while (current->next) {
+    current = current->next;
+  }
+  current->next = newNode;
+  return head;
 }
