@@ -23,6 +23,11 @@ void output(Node*);
 
 int main() {
   Node* head = nullptr;
+  // Creates the initial list
+  for (int i = 0; i < SIZE; i++) {
+    int tmp_val = rand() % MAX_RANDOM;
+    head = addToFront(head, tmp_val);
+  }
 
   insertNodePrompt(head);
   output(head);
@@ -33,18 +38,19 @@ int main() {
   return 0;
 }
 
-for (int i = 0; i < SIZE; i++) {
-  int tmp_val = rand() % MAX_RANDOM;
-  head = addToFront(head, tmp_val);
-}
-
+// insertNodePrompt() handles user input for insertion
+// arguments: reference to head pointer
+// returns: nothing
 void insertNodePrompt(Node*& head) {
   int entry;
   int count = 1;
   Node* current = head;
 
   cout << "After which node to insert " << INSERT_VALUE << "? " << endl;
-  current = current->next;
+  while (current) {
+    cout << "[" << count++ << "] " << current->value << endl;
+    current = current->next;
+  }
 }
 
 cout << "Choice --> ";
