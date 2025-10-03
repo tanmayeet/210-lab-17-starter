@@ -6,7 +6,7 @@ using namespace std;
 
 const int SIZE = 7;
 const int MAX_RANDOM = 100;
-const float = INSERT_VALUE = 10000;
+const float INSERT_VALUE = 10000;
 
 // Node structure
 struct Node {
@@ -24,11 +24,6 @@ void output(Node*);
 int main() {
   Node* head = nullptr;
 
-  createList(head, SIZE);
-
-  deleteNodePrompt(head);
-  output(head);
-
   insertNodePrompt(head);
   output(head);
 
@@ -36,6 +31,27 @@ int main() {
   output(head);
 
   return 0;
+}
+
+void insertNodePrompt(Node*& head) {
+  int entry;
+  int count = 1;
+  Node* current = head;
+
+  cout << "After which node to insert " << INSERT_VALUE << "? " << endl;
+  current = current->next;
+}
+
+cout << "Choice --> ";
+cin >> entry;
+
+if (cin.fail() || entry < 1 || entry > SIZE) {
+  cin.clear();
+  cin.ignore(1000, "\n");
+  cout << "Invalid entry. Must be a number between 1 and " << SIZE << ".\n";
+  return;
+
+  head = insertAfter(head, entry, INSERT_VALUE);
 }
 
 Node* addToFront(Node* head, float value) {
