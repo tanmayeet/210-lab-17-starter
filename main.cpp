@@ -91,19 +91,12 @@ int main() {
   prev->next = newnode;
   output(head);
 
-  // deleting the linked list
-  current = head;
-  while (current) {
-    head = current->next;
-    delete current;
-    current = head;
-  }
-  head = nullptr;
-  output(head);
-
   return 0;
 }
 
+// deleteList() deletess the entire linked lisst
+// arguments: reference to head pointer
+// returns: nothing
 void deleteList(Node*& head) {
   Node* current = head;
   while (current) {
