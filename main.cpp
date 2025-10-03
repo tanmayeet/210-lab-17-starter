@@ -12,6 +12,10 @@ struct Node {
 };
 
 // Function prototypes
+Node* addToFront(Node* head, float value);
+Node* deleteNode(Node* head, int position);
+Node* insertAfter(Node* head, int position, float value);
+void deleteList(Node*& head);
 void output(Node*);
 
 int main() {
