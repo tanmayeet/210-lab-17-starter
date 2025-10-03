@@ -25,7 +25,7 @@ int main() {
   // create a linked list of size SIZE with random numbers 0-99
   for (int i = 0; i < SIZE; i++) {
     int tmp_val = rand() % 100;
-    head = addToFront(head, rand() % 100);
+    head = addToFront(head, tmp_val);
   }
   output(head);
 
@@ -36,6 +36,11 @@ int main() {
   int entry;
   cout << "Choice --> ";
   cin >> entry;
+
+  if (entry < 1 || entry > SIZE) {
+    cout << "Invalid entry. Must be between 1 and " << SIZE << ".\n";
+    return 1;
+  }
 
   head = deleteNode(head, entry);
 
@@ -49,10 +54,11 @@ int main() {
     cout << "[" << count++ << "] " << current->value << endl;
     current = current->next;
   }
+
   cout << "Choice --> ";
   cin >> entry;
 
-  head = insertAfter(head, entry, 100000);
+  head = insertAfter(head, entry, 10000);
   deleteList(head);
   output(head);
 
@@ -109,7 +115,7 @@ Node* insertAfter(Node* head, int position, float value) {
   return head;
 }
 
-// deleteList() deletess the entire linked lisst
+// deleteList() deletes the entire linked lisst
 // arguments: reference to head pointer
 // returns: nothing
 void deleteList(Node*& head) {
