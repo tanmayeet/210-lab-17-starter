@@ -158,6 +158,9 @@ void deleteList(Node*& head) {
   head = nullptr;
 }
 
+// output() prints the contents of the linked list
+// arguments: head pointer
+// returns: nothing
 void output(Node* hd) {
   if (!hd) {
     cout << "Empty list.\n";
