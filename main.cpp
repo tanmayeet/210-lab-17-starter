@@ -33,6 +33,11 @@ int main() {
   return 0;
 }
 
+for (int i = 0; i < SIZE; i++) {
+  int tmp_val = rand() % MAX_RANDOM;
+  head = addToFront(head, tmp_val);
+}
+
 void insertNodePrompt(Node*& head) {
   int entry;
   int count = 1;
