@@ -86,6 +86,9 @@ void insertNodePrompt(Node*& head) {
   head = insertAfter(head, entry, INSERT_VALUE);
 }
 
+// addToFront() adds a new node to the front of the list
+// arguments: head pointer, value to insert
+// returns: new head pointer
 Node* addToFront(Node* head, float value) {
   Node* newNode = new Node;
   newNode->value = value;
@@ -93,6 +96,9 @@ Node* addToFront(Node* head, float value) {
   return newNode;
 }
 
+// deleteNode() deletes a node at a given position in the list
+// arguments: head pointer, position to delete (1-based index)
+// returns: new head pointer
 Node* deleteNode(Node* head, int position) {
   if (!head || position < 1) return head;
 
@@ -116,6 +122,9 @@ Node* deleteNode(Node* head, int position) {
   return head;
 }
 
+// insertAfter() inserts a new node after a given position
+// arguments: head pointer, position to insert after, value to insert
+// returns: new head pointer
 Node* insertAfter(Node* head, int position, float value) {
   if (!head || position < 1) {
     return head;
@@ -163,6 +172,9 @@ void output(Node* hd) {
   cout << endl;
 }
 
+// addToTail() adds a new node to the end of the linked list
+// arguments: head pointer, value to insert
+// returns: new head pointer
 Node* addToTail(Node* head, float value) {
   Node* newNode = new Node;
   newNode->value = value;
