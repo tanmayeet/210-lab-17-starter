@@ -83,6 +83,7 @@ int main() {
       current = current->next;
       prev = prev->next;
     }
+
   // at this point, insert a node between prev and current
   Node* newnode = new Node;
   newnode->value = 10000;
@@ -101,6 +102,16 @@ int main() {
   output(head);
 
   return 0;
+}
+
+void deleteList(Node*& head) {
+  Node* current = head;
+  while (current) {
+    Node* temp = current;
+    current = current->next;
+    delete temp;
+  }
+  head = nullptr;
 }
 
 void output(Node* hd) {
