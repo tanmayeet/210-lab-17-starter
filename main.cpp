@@ -11,6 +11,8 @@ struct Node {
   Node* next;
 };
 
+// Function prototypes
+
 void output(Node*);
 
 int main() {
