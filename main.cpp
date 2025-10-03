@@ -33,6 +33,22 @@ int main() {
 
   output(head);
 
+  int entry;
+  cout << "Which node to delete? " << endl;
+  output(head);
+  cout << "Choice --> ";
+  cin >> entry;
+
+  if (cin.fail() || entry < 1 || entry > SIZE) {
+    cin.clear();
+    cin.ignore(1000, '\n');
+    cout << "Invalid entry. Must be a number a between 1 and " << SIZE << ".\n";
+    return 1;
+  }
+
+  head = deleteNode(head, entry);
+  output(head);
+
   // Insert node prompt
   insertNodePrompt(head);
   output(head);
@@ -62,7 +78,7 @@ void insertNodePrompt(Node*& head) {
 
   if (cin.fail() || entry < 1 || entry > SIZE) {
     cin.clear();
-    cin.ignore(1000, "\n");
+    cin.ignore(1000, '\n');
     cout << "Invalid entry. Must be a number between 1 and " << SIZE << ".\n";
     return;
   }
