@@ -20,18 +20,24 @@ Node* deleteNode(Node* head, int position);
 Node* insertAfter(Node* head, int position, float value);
 void deleteList(Node*& head);
 void output(Node*);
+void insertNodePrompt(Node*& head);
 
 int main() {
   Node* head = nullptr;
+
   // Creates the initial list
   for (int i = 0; i < SIZE; i++) {
     int tmp_val = rand() % MAX_RANDOM;
     head = addToFront(head, tmp_val);
   }
 
+  output(head);
+
+  // Insert node prompt
   insertNodePrompt(head);
   output(head);
 
+  // Delete the list
   deleteList(head);
   output(head);
 
@@ -51,17 +57,15 @@ void insertNodePrompt(Node*& head) {
     cout << "[" << count++ << "] " << current->value << endl;
     current = current->next;
   }
-}
+  cout << "Choice --> ";
+  cin >> entry;
 
-cout << "Choice --> ";
-cin >> entry;
-
-if (cin.fail() || entry < 1 || entry > SIZE) {
-  cin.clear();
-  cin.ignore(1000, "\n");
-  cout << "Invalid entry. Must be a number between 1 and " << SIZE << ".\n";
-  return;
-
+  if (cin.fail() || entry < 1 || entry > SIZE) {
+    cin.clear();
+    cin.ignore(1000, "\n");
+    cout << "Invalid entry. Must be a number between 1 and " << SIZE << ".\n";
+    return;
+  }
   head = insertAfter(head, entry, INSERT_VALUE);
 }
 
@@ -115,7 +119,7 @@ Node* insertAfter(Node* head, int position, float value) {
   return head;
 }
 
-// deleteList() deletes the entire linked lisst
+// deleteList() deletes the entire linked list
 // arguments: reference to head pointer
 // returns: nothing
 void deleteList(Node*& head) {
