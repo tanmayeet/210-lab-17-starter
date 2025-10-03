@@ -21,6 +21,7 @@ int main() {
   // create a linked list of size SIZE with random numbers 0-99
   for (int i = 0; i < SIZE; i++) {
     int tmp_val = rand() % 100;
+    head = addToFront(head, rand() % 100);
   }
   output(head);
 
@@ -32,22 +33,8 @@ int main() {
   cout << "Choice --> ";
   cin >> entry;
 
-  // traverse that many times and delete that node
-  current = head;
-  Node* prev = head;
-  for (int i = 0; i < (entry - 1); i++)
-    if (i == 0)
-      current = current->next;
-    else {
-      current = current->next;
-      prev = prev->next;
-    }
-  // at this point, delete current and reroute pointers
-  if (current) {  // checks for current to be valid before deleting the node
-    prev->next = current->next;
-    delete current;
-    current = nullptr;
-  }
+  head = deleteNode(head, entry);
+
   output(head);
 
   // insert a node
@@ -61,32 +48,9 @@ int main() {
   cout << "Choice --> ";
   cin >> entry;
 
-  current = head;
-  prev = head;
-  for (int i = 0; i < (entry); i++)
-    if (i == 0)
-      current = current->next;
-    else {
-      current = current->next;
-      prev = prev->next;
-    }
-
-  // at this point, insert a node between prev and current
-  Node* newnode = new Node;
-  newnode->value = 10000;
-  newnode->next = current;
-  prev->next = newnode;
+  head = insertAfter(head, entry, 100000);
+  deleteList(head);
   output(head);
-
-  //   // deleting the linked list
-  //   current = head;
-  //   while (current) {
-  //     head = current->next;
-  //     delete current;
-  //     current = head;
-  //   }
-  //   head = nullptr;
-  //   output(head);
 
   return 0;
 }
@@ -96,6 +60,49 @@ Node* addToFront(Node* head, float value) {
   newNode->value = value;
   newNode->next = head;
   return newNode;
+}
+
+Node* deleteNode(Node* head, int position) {
+  if (!head || position < 1) return head;
+
+  if (position == 1) {
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    return head;
+  }
+
+  Node* current = head;
+  Node* prev = nullptr;
+  for (int i = 1; i < position && current; i++) {
+    prev = current;
+    current = current->next;
+  }
+  if (current) {
+    prev->next = current->next;
+    delete current;
+  }
+  return head;
+}
+
+Node* insertAfter(Node* head, int position, float value) {
+  if (!head || position < 1) {
+    return head;
+  }
+
+  Node* current = head;
+  for (int i = 1; i < position && current; i++) {
+    current = current->next;
+  }
+
+  if (current) {
+    Node* newNode = new Node;
+    newNode->value = value;
+    newNode->next = current->next;
+    current->next = newNode;
+  }
+
+  return head;
 }
 
 // deleteList() deletess the entire linked lisst
